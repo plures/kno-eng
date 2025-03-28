@@ -1,0 +1,31 @@
+{
+  "name": "kno-eng",
+  "version": "1.0.0",
+  "description": "Knowledge Engine framework",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/gunhost.js start",
+    "stop": "node src/gunhost.js stop",
+    "status": "node src/gunhost.js status",
+    "test": "jest"
+  },
+  "dependencies": {
+    "gun": "^0.2020.1235",
+    "http": "^0.0.1-security",
+    "ws": "^7.4.6",
+    "net": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "os": "^0.1.1",
+    "child_process": "^1.0.2",
+    "svelte": "^3.38.3",
+    "vite": "^2.4.4",
+    "deno": "^1.11.5"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.21",
+    "@vscode/webview-ui-toolkit": "^1.0.0",
+    "esbuild": "^0.12.15"
+  }
+}

@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Package project
+        run: npm run package
+
+      - name: Publish to GitHub
+        run: npm publish
+
+      - name: Publish to NPM
+        run: npm publish --registry=https://registry.npmjs.org/
+
+      - name: Publish to Deno.land
+        run: deno publish
+
+      - name: Publish to Docker
+        run: docker build -t myproject . && docker push myproject
+
+      - name: Publish to Winget
+        run: winget create myproject
+
+      - name: Publish to Nixpkg
+        run: nix-build release.nix
+
+      - name: Generate changelog
+        run: npm run changelog
+
+      - name: Bump version
+        run: npm version patch
