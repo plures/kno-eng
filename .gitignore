@@ -134,3 +134,17 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Additional build and dependency directories
+build/
+dist/
+public/
+out/
+docs/
+
+# Documentation build artifacts
+docs/.vitepress/dist
+docs/.vitepress/cache
+docs/.docusaurus
+docs/.vuepress/dist
+docs/.vuepress/cache
