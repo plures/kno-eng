@@ -7,7 +7,18 @@
     "start": "node src/gunhost.js start",
     "stop": "node src/gunhost.js stop",
     "status": "node src/gunhost.js status",
-    "test": "jest"
+    "test": "jest",
+    "build": "vite build",
+    "build:windows": "vite build --mode windows",
+    "build:nixos": "vite build --mode nixos",
+    "build:flatpak": "vite build --mode flatpak",
+    "build:macos": "vite build --mode macos",
+    "build:ios": "vite build --mode ios",
+    "build:android": "vite build --mode android",
+    "generate-docs": "jsdoc -c jsdoc.json",
+    "publish-docs": "gh-pages -d docs",
+    "build:landing-page": "vite build --config vite.config.js",
+    "deploy:landing-page": "gh-pages -d public"
   },
   "dependencies": {
     "gun": "^0.2020.1235",
@@ -20,7 +31,9 @@
     "child_process": "^1.0.2",
     "svelte": "^3.38.3",
     "vite": "^2.4.4",
-    "deno": "^1.11.5"
+    "deno": "^1.11.5",
+    "jsdoc": "^3.6.7",
+    "gh-pages": "^3.2.3"
   },
   "devDependencies": {
     "jest": "^27.0.6",

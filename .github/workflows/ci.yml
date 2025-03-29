@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest, nixos-latest]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -39,6 +39,54 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: Build for Windows
+        if: matrix.os == 'windows-latest'
+        run: npm run build:windows
+
+      - name: Build for NixOS
+        if: matrix.os == 'nixos-latest'
+        run: npm run build:nixos
+
+      - name: Build for Linux Flatpak
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run build:flatpak
+
+      - name: Build for MacOS
+        if: matrix.os == 'macos-latest'
+        run: npm run build:macos
+
+      - name: Build for iOS
+        if: matrix.os == 'macos-latest'
+        run: npm run build:ios
+
+      - name: Build for Android
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run build:android
+
+      - name: Build Docker image
+        run: docker build -t myproject .
+
+      - name: Publish to GitHub
+        run: npm publish
+
+      - name: Publish to NPM
+        run: npm publish --registry=https://registry.npmjs.org/
+
+      - name: Publish to Deno.land
+        run: deno publish
+
+      - name: Publish to Docker
+        run: docker push myproject
+
+      - name: Publish to Winget
+        run: winget create myproject
+
+      - name: Publish to Nixpkg
+        run: nix-build release.nix
+
+      - name: Generate documentation
+        run: npm run generate-docs
 
   lint:
     runs-on: ubuntu-latest
