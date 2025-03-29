@@ -1,4 +1,4 @@
-# kno-eng Pronounced Knowing
+# kno-eng (*Knowing*)
 is a Knowledge Engine framework. 
 
 ## Gun.js Service Setup and Usage
