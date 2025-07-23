@@ -1,0 +1,78 @@
+{
+    "metrics":  {
+                    "lastOptimization":  "2025-07-09T20:58:58.0829949-07:00",
+                    "errorsPrevented":  0,
+                    "patternsLearned":  15,
+                    "effectiveness":  0
+                },
+    "snippets":  {
+
+                 },
+    "errorPatterns":  {
+                          "powershell":  {
+                                             "syntax":  {
+                                                            "try_s________":  {
+                                                                                  "effectiveness":  0.0,
+                                                                                  "occurrenceCount":  2,
+                                                                                  "prevention":  "Use try-catch snippet template",
+                                                                                  "created":  "2025-07-09T15:49:31.6182491-07:00",
+                                                                                  "fix":  "Add missing catch or finally block",
+                                                                                  "pattern":  "try\\s*{[^}]*$",
+                                                                                  "lastSeen":  "2025-07-09T15:50:40.7084613-07:00",
+                                                                                  "errorsPrevented":  0
+                                                                              },
+                                                            "Test_Path_s______s__":  {
+                                                                                         "effectiveness":  0.0,
+                                                                                         "occurrenceCount":  2,
+                                                                                         "prevention":  "Always validate paths before using Test-Path",
+                                                                                         "created":  "2025-07-09T15:49:31.7703464-07:00",
+                                                                                         "fix":  "Add null/empty validation before Test-Path",
+                                                                                         "pattern":  "Test-Path\\s+\\$[^\\s]+",
+                                                                                         "lastSeen":  "2025-07-09T15:50:40.7548846-07:00",
+                                                                                         "errorsPrevented":  0
+                                                                                     }
+                                                        },
+                                             "performance":  {
+
+                                                             },
+                                             "validation":  {
+                                                                "ConvertFrom_Json_s_______":  {
+                                                                                                  "effectiveness":  0.0,
+                                                                                                  "occurrenceCount":  2,
+                                                                                                  "prevention":  "Wrap ConvertFrom-Json in try-catch",
+                                                                                                  "created":  "2025-07-09T15:49:31.8507933-07:00",
+                                                                                                  "fix":  "Add error handling for JSON parsing",
+                                                                                                  "pattern":  "ConvertFrom-Json\\s+[^|]*$",
+                                                                                                  "lastSeen":  "2025-07-09T15:50:40.7841406-07:00",
+                                                                                                  "errorsPrevented":  0
+                                                                                              }
+                                                            },
+                                             "logic":  {
+
+                                                       }
+                                         }
+                      },
+    "rules":  {
+                  "prevention":  {
+                                     "SyntaxCheck":  {
+                                                         "priority":  5,
+                                                         "created":  "2025-07-09T15:50:40.8796185-07:00",
+                                                         "enabled":  true,
+                                                         "description":  "Prevent syntax errors from reaching production",
+                                                         "rule":  "Always run syntax check before committing PowerShell code"
+                                                     }
+                                 },
+                  "optimization":  {
+
+                                   },
+                  "enforcement":  {
+                                      "ErrorHandling":  {
+                                                            "priority":  5,
+                                                            "created":  "2025-07-09T15:50:40.9719639-07:00",
+                                                            "enabled":  true,
+                                                            "description":  "Ensure robust error handling",
+                                                            "rule":  "All file operations must be wrapped in try-catch blocks"
+                                                        }
+                                  }
+              }
+}

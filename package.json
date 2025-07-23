@@ -1,44 +1,80 @@
 {
   "name": "kno-eng",
   "version": "1.0.0",
-  "description": "Knowledge Engine framework",
-  "main": "src/index.js",
+  "description": "Knowledge Engine - Intelligent Knowledge Management Across All Platforms",
+  "main": "src/gunhost.js",
+  "private": true,
+  "workspaces": [
+    "src/vscode-extension/kno-eng-extension",
+    "src/mobile-client",
+    "src/landing-page"
+  ],
   "scripts": {
     "start": "node src/gunhost.js start",
     "stop": "node src/gunhost.js stop",
     "status": "node src/gunhost.js status",
-    "test": "jest",
-    "build": "vite build",
-    "build:windows": "vite build --mode windows",
-    "build:nixos": "vite build --mode nixos",
-    "build:flatpak": "vite build --mode flatpak",
-    "build:macos": "vite build --mode macos",
-    "build:ios": "vite build --mode ios",
-    "build:android": "vite build --mode android",
-    "generate-docs": "jsdoc -c jsdoc.json",
-    "publish-docs": "gh-pages -d docs",
-    "build:landing-page": "vite build --config vite.config.js",
-    "deploy:landing-page": "gh-pages -d public"
+    "install:all": "npm install && npm run install:extension && npm run install:mobile && npm run install:landing",
+    "install:extension": "cd src/vscode-extension/kno-eng-extension && npm install",
+    "install:mobile": "cd src/mobile-client && npm install",
+    "install:landing": "cd src/landing-page && npm install",
+    "build:all": "npm run build:extension && npm run build:mobile && npm run build:landing",
+    "build:extension": "cd src/vscode-extension/kno-eng-extension && npm run build",
+    "build:mobile": "cd src/mobile-client && npm run build",
+    "build:landing": "cd src/landing-page && npm run build",
+    "test:all": "npm run test:extension && npm run test:mobile && npm run test:landing",
+    "test:extension": "cd src/vscode-extension/kno-eng-extension && npm test",
+    "test:mobile": "cd src/mobile-client && npm test",
+    "test:landing": "cd src/landing-page && npm test",
+    "dev:extension": "cd src/vscode-extension/kno-eng-extension && npm run watch",
+    "dev:mobile": "cd src/mobile-client && npm start",
+    "dev:landing": "cd src/landing-page && npm run dev",
+    "dev:all": "concurrently \"npm run dev:extension\" \"npm run dev:mobile\" \"npm run dev:landing\"",
+    "clean": "npm run clean:extension && npm run clean:mobile && npm run clean:landing",
+    "clean:extension": "cd src/vscode-extension/kno-eng-extension && rm -rf out node_modules",
+    "clean:mobile": "cd src/mobile-client && rm -rf dist node_modules",
+    "clean:landing": "cd src/landing-page && rm -rf dist node_modules",
+    "lint:all": "npm run lint:extension && npm run lint:mobile && npm run lint:landing",
+    "lint:extension": "cd src/vscode-extension/kno-eng-extension && npm run lint",
+    "lint:mobile": "cd src/mobile-client && npm run lint",
+    "lint:landing": "cd src/landing-page && npm run lint",
+    "package:extension": "cd src/vscode-extension/kno-eng-extension && npm run package",
+    "docs": "npm run docs:generate && npm run docs:serve",
+    "docs:generate": "jsdoc -c jsdoc.json",
+    "docs:serve": "http-server docs -p 8080",
+    "docs:publish": "gh-pages -d docs"
   },
   "dependencies": {
     "gun": "^0.2020.1235",
-    "http": "^0.0.1-security",
-    "ws": "^7.4.6",
-    "net": "^1.0.2",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "os": "^0.1.1",
-    "child_process": "^1.0.2",
-    "svelte": "^3.38.3",
-    "vite": "^2.4.4",
-    "deno": "^1.11.5",
+    "ws": "^7.4.6"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1",
     "jsdoc": "^3.6.7",
     "gh-pages": "^3.2.3"
   },
-  "devDependencies": {
-    "jest": "^27.0.6",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.21",
-    "@vscode/webview-ui-toolkit": "^1.0.0",
-    "esbuild": "^0.12.15"
-  }
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/kno-eng.git"
+  },
+  "keywords": [
+    "knowledge-engine",
+    "kno-eng",
+    "knowledge-management",
+    "p2p-sync",
+    "ai",
+    "machine-learning",
+    "vscode-extension",
+    "mobile-app",
+    "gun-js",
+    "mcp",
+    "cursor",
+    "copilot"
+  ],
+  "author": "Knowledge Engine Team",
+  "license": "MIT"
 }

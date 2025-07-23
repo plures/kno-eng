@@ -1,0 +1,54 @@
+{
+    "Path Validation":  {
+                            "description":  "Path validation template",
+                            "prefix":  "pathval",
+                            "category":  "general",
+                            "usageCount":  0,
+                            "created":  "2025-07-09T15:50:40.8477384-07:00",
+                            "body":  [
+                                         "if (`$null -eq `$Path -or [string]::IsNullOrWhiteSpace(`$Path)) {",
+                                         "    throw \"Path is null or empty\"",
+                                         "}",
+                                         "if (-not (Test-Path `$Path)) {",
+                                         "    throw \"Path does not exist: `$Path\"",
+                                         "}"
+                                     ]
+                        },
+    "Function Template":  {
+                              "prefix":  "psfunc",
+                              "body":  [
+                                           "function $1 {",
+                                           "    param(",
+                                           "        [Parameter(Mandatory = `$false)]",
+                                           "        [string]`$Parameter1",
+                                           "        ",
+                                           "        [Parameter(Mandatory = `$false)]",
+                                           "        [switch]`$Switch1",
+                                           "    )",
+                                           "    ",
+                                           "    try {",
+                                           "        $2",
+                                           "    } catch {",
+                                           "        Write-Error \"$1 failed: $($_.Exception.Message)\"",
+                                           "        throw",
+                                           "    }",
+                                           "}"
+                                       ],
+                              "description":  "Standardized PowerShell function with error handling"
+                          },
+    "Try-Catch Block":  {
+                            "description":  "Standardized try-catch block",
+                            "prefix":  "trycatch",
+                            "category":  "general",
+                            "usageCount":  0,
+                            "created":  "2025-07-09T15:50:40.8219636-07:00",
+                            "body":  [
+                                         "try {",
+                                         "    `$1",
+                                         "} catch {",
+                                         "    Write-Error \"`$2: `$($_.Exception.Message)\"",
+                                         "    throw",
+                                         "}"
+                                     ]
+                        }
+}

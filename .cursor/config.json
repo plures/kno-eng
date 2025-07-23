@@ -1,0 +1,54 @@
+{
+  "powershell.validate.enable": true,
+  "powershell.codeFormatting.openBraceOnSameLine": true,
+  "powershell.codeFormatting.newLineAfterOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+  "powershell.codeFormatting.whitespaceAroundOperator": true,
+  "powershell.codeFormatting.whitespaceAfterSeparator": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": false,
+  "powershell.codeFormatting.pipelineIndentation": "IncreaseIndentationForFirstPipeline",
+  "powershell.codeFormatting.preserveQuoteStyle": true,
+  "cursor.preCommitValidation": {
+    "powershell": {
+      "syntaxCheck": true,
+      "braceMatching": true,
+      "pathValidation": true,
+      "errorHandling": true,
+      "autoLearn": true
+    }
+  },
+  "cursor.autoLearning": {
+    "enabled": true,
+    "memoryPath": ".cursor/error-memory.json",
+    "snippetsPath": ".cursor/snippets/powershell.json",
+    "autoOptimize": true,
+    "optimizationSchedule": "weekly",
+    "reportGeneration": true
+  },
+  "cursor.memory": {
+    "errorPatterns": {
+      "powershell": {
+        "syntax": {
+          "missingBraces": {
+            "pattern": "try\\s*{[^}]*$",
+            "fix": "Ensure every try block has a corresponding catch or finally",
+            "prevention": "Use try-catch snippet template"
+          },
+          "malformedTryCatch": {
+            "pattern": "try\\s*{[^}]*}\\s*else\\s*{",
+            "fix": "else should be inside try block, not after catch",
+            "prevention": "Use standardized try-catch structure"
+          }
+        },
+        "validation": {
+          "nullPathTest": {
+            "pattern": "Test-Path\\s+\\$[^\\s]+",
+            "fix": "Add null/empty check before Test-Path",
+            "prevention": "Always validate paths before using Test-Path"
+          }
+        }
+      }
+    }
+  }
+}

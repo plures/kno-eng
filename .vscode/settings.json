@@ -1,0 +1,15 @@
+{
+  "knoEng.gunServerPort": 8765,
+  "knoEng.gunServerHost": "localhost",
+  "knoEng.gunEnableServer": true,
+  "knoEng.gunPeers": [
+    "http://localhost:8765/gun"
+  ],
+  "knoEng.gunEnableP2P": false,
+  "knoEng.gunStoragePath": ".vscode/kno-eng/gun",
+  "knoEng.gunEnableLocalStorage": true,
+  "knoEng.gunEnableEncryption": false,
+  "knoEng.gunMaxRetries": 1,
+  "knoEng.gunTimeout": 2000,
+  "knoEng.gunBatchSize": 100
+}

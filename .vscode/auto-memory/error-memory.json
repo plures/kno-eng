@@ -1,0 +1,40 @@
+{
+  "errorPatterns": {
+    "javascript": {
+      "pattern": {
+        "console__log_________": {
+          "pattern": "console\\.log\\([^)]*\\)",
+          "fix": "Replace with proper logging or remove",
+          "prevention": "Use proper logging framework",
+          "occurrenceCount": 9,
+          "errorsPrevented": 0,
+          "lastSeen": "2025-07-13T07:37:00.457Z",
+          "effectiveness": 0,
+          "created": "2025-07-13T07:36:58.552Z"
+        }
+      }
+    },
+    "typescript": {
+      "pattern": {
+        "console__log_________": {
+          "pattern": "console\\.log\\([^)]*\\)",
+          "fix": "Replace with proper logging or remove",
+          "prevention": "Use proper logging framework",
+          "occurrenceCount": 6,
+          "errorsPrevented": 0,
+          "lastSeen": "2025-07-13T07:37:00.372Z",
+          "effectiveness": 0,
+          "created": "2025-07-13T07:37:00.200Z"
+        }
+      }
+    }
+  },
+  "snippets": {},
+  "rules": {},
+  "metrics": {
+    "patternsLearned": 2,
+    "errorsPrevented": 0,
+    "effectiveness": 0,
+    "lastOptimization": null
+  }
+}

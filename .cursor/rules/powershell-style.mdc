@@ -1,0 +1,84 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+**Assistant Internal Scripting Playbook**
+
+1. **String Interpolation & Escaping**
+
+   * Always wrap variables in `${}` when adjacent to punctuation.
+
+     ```powershell
+     Write-Log "Failed to install RSAT for $Name: ${e.Message}"
+     ```
+   * Prevents PowerShell from treating punctuation as part of the variable name.
+
+2. **Unique Parameter Definitions**
+
+   * Define each parameter exactly once in the `param()` block.
+   * Before finalizing, scan for duplicates (e.g. only one `WhatIf`).
+
+3. **RSAT Module Auto-Install**
+
+   * Map key modules (`FailoverClusters`, `ActiveDirectory`) to RSAT capabilities.
+   * In `Ensure-Module`, if missing, call `Add-WindowsCapability` with the mapped name.
+   * Then import with appropriate flags (`-SkipEditionCheck` for FailoverClusters).
+
+4. **PSScriptAnalyzer Linting**
+
+   * Run PSScriptAnalyzer on every script save.
+   * Enforce rules for:
+
+     * Unescaped variable names in strings
+     * Duplicate parameters
+     * Missing `[CmdletBinding()]`
+     * Inconsistent function attributes
+
+5. **Template-Based Function Skeletons**
+
+   * Use a standard template for each helper function:
+
+     ```powershell
+     function My-Action {
+         [CmdletBinding()]
+         param(
+             [Parameter(Mandatory)][string]$Input
+         )
+         # Implementation…
+     }
+     ```
+   * Ensures consistent structure: attributes, `param`, braces.
+
+6. **Syntax-Only Smoke Test**
+
+   * After edits, run:
+
+     ```powershell
+     powershell -NoProfile -Command { . .\MyScript.ps1; Write-Host 'Syntax OK' }
+     ```
+   * Catches parse errors (missing braces, bad interpolation) immediately.
+
+7. **Diff-Review Before Finalizing**
+
+   * Compare the updated script against the last known-good version.
+   * Look for accidental deletions, duplicate code, or residual merge artifacts.
+
+8. **Modular, Idempotent Helpers**
+
+   * Each helper function should handle its own errors and logging.
+   * Always return a known type (e.g. `$true/$false` or an object) for predictable flows.
+
+9. **Test-Driven Updates**
+
+   * For each new feature or fix, write a minimal test case (e.g. dry-run against a dummy cluster).
+   * Validate behavior before integration.
+
+10. **Documentation & Versioning**
+
+    * Update script header `.NOTES` with version and date.
+    * Keep a changelog at the top summarizing major changes.
+
+---
+
+*These guidelines ensure scripts remain robust, maintainable, and free from trivial syntax or logic errors.*

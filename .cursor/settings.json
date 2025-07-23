@@ -1,0 +1,59 @@
+{
+  "cursor.autoLearning": {
+    "enabled": true,
+    "autoTrigger": true,
+    "memoryPath": ".cursor/error-memory.json",
+    "snippetsPath": ".cursor/snippets/powershell.json",
+    "autoOptimize": true,
+    "optimizationSchedule": "weekly",
+    "reportGeneration": true,
+    "errorCapture": {
+      "enabled": true,
+      "captureOnSave": true,
+      "captureOnError": true,
+      "autoLearnFromFixes": true
+    }
+  },
+  "cursor.memory": {
+    "autoUpdate": true,
+    "patternRecognition": true,
+    "snippetGeneration": true,
+    "ruleEnforcement": true
+  },
+  "cursor.preCommitValidation": {
+    "powershell": {
+      "syntaxCheck": true,
+      "braceMatching": true,
+      "pathValidation": true,
+      "errorHandling": true,
+      "autoLearn": true,
+      "autoFix": true
+    }
+  },
+  "cursor.fileWatchers": {
+    "powershell": {
+      "enabled": true,
+      "watchPatterns": ["**/*.ps1"],
+      "autoLearnOnSave": true,
+      "autoOptimizeOnChange": true
+    }
+  },
+  "cursor.intelliSense": {
+    "autoComplete": true,
+    "snippetSuggestions": true,
+    "errorPrevention": true,
+    "patternMatching": true
+  },
+  "powershell.validate.enable": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.codeFormatting.useCorrectCasing": true,
+  "powershell.codeFormatting.openBraceOnSameLine": true,
+  "powershell.codeFormatting.newLineAfterOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+  "powershell.codeFormatting.whitespaceAroundOperator": true,
+  "powershell.codeFormatting.whitespaceAfterSeparator": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": false,
+  "powershell.codeFormatting.pipelineIndentation": "IncreaseIndentationForFirstPipeline",
+  "powershell.codeFormatting.preserveQuoteStyle": true
+} 
